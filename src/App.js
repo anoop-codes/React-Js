@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import HomeUseReducer from './components/useReducer/HomeUseReducer';
+import HomeUseMemoHook from './components/optimisation-techniques/hooks/useMemo/HomeUseMemoHook';
+
+
 
 function App() {
   return (
     <div className="App">
-      <HomeUseReducer />
+      <HomeUseMemoHook />
     </div>
   );
 }
