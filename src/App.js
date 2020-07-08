@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
-import HomeUseMemoHook from './components/optimisation-techniques/hooks/useMemo/HomeUseMemoHook';
-
+import HomeHigherOrderFunc from './components/sharing-logic/higer-order-func/HomeHigherOrderFunc';
 
 
 function App() {
   return (
     <div className="App">
-      <HomeUseMemoHook />
+      <HomeHigherOrderFunc />
     </div>
   );
 }
