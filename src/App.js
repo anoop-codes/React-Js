@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import HomeHigherOrderFunc from './components/sharing-logic/higer-order-func/HomeHigherOrderFunc';
+import HomeUseRefCompo from './components/access-native-dom/hooks/HomeUseRefCompo';
 
 
 function App() {
   return (
     <div className="App">
-      <HomeHigherOrderFunc />
+      <HomeUseRefCompo />
     </div>
   );
 }
