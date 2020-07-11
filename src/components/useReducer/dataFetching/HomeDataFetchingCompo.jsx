@@ -65,3 +65,5 @@ const HomeDataFetchCompo = () => {
 }
 
 export default HomeDataFetchCompo;
+
+

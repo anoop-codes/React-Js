@@ -1,14 +1,17 @@
 import React from 'react';
 import './App.css';
-import HomeUseRefCompo from './components/access-native-dom/hooks/HomeUseRefCompo';
+import HomePortalsCompo from './components/others/portals/HomePortalsComp';
 
 
 function App() {
   return (
     <div className="App">
-      <HomeUseRefCompo />
+      <HomePortalsCompo />
     </div>
   );
 }
 
 export default App;
+
+//81076
+//87230
