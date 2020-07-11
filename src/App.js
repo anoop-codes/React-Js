@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-import HomePortalsCompo from './components/others/portals/HomePortalsComp';
+import HomeRoutingCompo from './components/routers/HomeRouteringCompo';
+
 
 
 function App() {
   return (
     <div className="App">
-      <HomePortalsCompo />
+      <HomeRoutingCompo />
     </div>
   );
 }
