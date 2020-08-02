@@ -1,20 +1,25 @@
 import React from 'react';
 
-const SideBar = ({ genres, selectedGenre, selectGenre }) => {
+const SideBar = ({ items, seletedItems, onChangeItem, propertyKey, displayProperty }) => {
     return (
         <ul className="list-group">
-            {genres.map(genre => (
+            {items.map(item => (
                 <li
-                    className={genre._id === selectedGenre._id ? "list-group-item active" : "list-group-item"}
-                    key={genre._id}
+                    className={item[propertyKey] === seletedItems[propertyKey] ? "list-group-item active" : "list-group-item"}
+                    key={item[propertyKey]}
                     style={{ cursor: 'pointer' }}
-                    onClick={() => selectGenre(genre)}
+                    onClick={() => onChangeItem(item)}
                 >
-                    {genre.name}
+                    {item[displayProperty]}
                 </li>
             ))}
         </ul>
     );
+}
+
+SideBar.defaultProps = {
+    propertyKey: '_id',
+    displayProperty: 'name'
 }
 
 export default SideBar;

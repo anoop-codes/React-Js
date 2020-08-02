@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import HomeCounter from './counter-app/HomeCounter';
+
 import HomeVidlyApp from './vidly-app/HomeVidlyApp';
 
 
 function App() {
   return (
     <div className="container">
-      {/* <HomeCounter /> */}
+
       <HomeVidlyApp />
     </div>
   );
