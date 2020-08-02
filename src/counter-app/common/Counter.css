@@ -1,0 +1,10 @@
+.counter-wapper {
+    display: flex;
+    flex-flow: row;
+    padding: 10px;
+    align-items: center;
+}
+
+.counter-wapper   button {
+   margin: 0 10px;
+}
