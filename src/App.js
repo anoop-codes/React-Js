@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import HomeVidlyApp from './vidly-app/HomeVidlyApp';
+import HomeVidlyApp from './app-vidly/HomeVidlyApp';
 
 
 function App() {
