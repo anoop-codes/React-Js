@@ -1,65 +1,117 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Liked from '../common/Liked';
+import React, { Component } from 'react';
+import { getMovies } from '../services/fakeMovieService';
+import MoviesList from '../components/MoviesList';
+import SideBar from '../common/SideBar';
+import { getGenres } from '../services/fakeGenreService';
+import Pagination from '../common/Pagination';
+import { paginate } from '../utiles/paginate';
+import _ from 'lodash';
 
-const Movies = ({ movies, onRemoveMovie, isLiked, onSort, sortColunm }) => {
-
-    const getIcone = (column) => {
-        if (column !== sortColunm.path) return null;
-        if (sortColunm.order === 'asc')
-            return <i class="fa fa-sort-asc"></i>
-        else
-            return <i class="fa fa-sort-desc"></i>
+class Movies extends Component {
+    state = {
+        movies: [],
+        genres: [],
+        selectedGenre: { _id: 0, name: 'All Genre' },
+        pageSize: 4,
+        currentPage: 1,
+        sortColunm: { path: 'title', order: 'asc' }
     }
 
-    return (
-        <div className="table-responsive">
-            <table className="table table-striped respon">
-                <thead>
-                    <tr>
-                        <th scope="col" onClick={() => onSort('title')}>
-                            Title {getIcone('title')}
-                        </th>
-                        <th scope="col" onClick={() => onSort('genre.name')}>
-                            Genre {getIcone('genre.name')}
-                        </th>
-                        <th scope="col" onClick={() => onSort('numberInStock')}>
-                            Stock {getIcone('numberInStock')}
-                        </th>
-                        <th scope="col" onClick={() => onSort('dailyRentalRate')}>
-                            Rate {getIcone('dailyRentalRate')}
-                        </th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {movies.map((movie) => (
-                        <tr key={movie._id}>
-                            <td>{movie.title}</td>
-                            <td>{movie.genre.name}</td>
-                            <td>{movie.numberInStock}</td>
-                            <td>{movie.dailyRentalRate}</td>
-                            <td>
-                                <Liked
-                                    liked={movie.liked}
-                                    isLiked={() => isLiked(movie)}
-                                />
-                            </td>
-                            <td>
-                                <button className="btn btn-sm btn-danger" onClick={() => onRemoveMovie(movie)}>remove</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
-}
+    componentDidMount() {
+        this.setState({
+            movies: getMovies(),
+            genres: [{ _id: 0, name: 'All Genre' }, ...getGenres()]
+        })
+    }
 
-Movies.prototype = {
-    movies: PropTypes.array.isRequired,
-    onRemoveMovie: PropTypes.func.isRequired
+
+    handleMovieRemove = movie => {
+        const movies = this.state.movies.filter(m => m._id !== movie._id);
+        this.setState({
+            movies
+        });
+    }
+
+    handleLiked = (movie) => {
+        const movies = [...this.state.movies];
+        const index = movies.indexOf(movie);
+
+        movies[index].liked = !movie.liked;
+
+        this.setState({
+            movies
+        })
+    }
+
+    handleSelectedGenre = (genre) => {
+        this.setState({
+            selectedGenre: genre
+        })
+    }
+
+
+    handlePageChange = (page) => {
+        this.setState({
+            currentPage: page
+        })
+    }
+
+    handleSort = (path) => {
+
+        const sortColunm = { ...this.state.sortColunm };
+
+        sortColunm.path = path;
+        sortColunm.order = sortColunm.order === 'asc' ? 'desc' : 'asc';
+
+        this.setState({
+            sortColunm
+        })
+    }
+
+
+    render() {
+        const { movies, genres, selectedGenre, pageSize, currentPage, sortColunm } = this.state;
+
+
+        const filteredMovie = selectedGenre._id !== 0 ? movies.filter(m => m.genre.name === selectedGenre.name) : movies;
+
+        const sortedMovies = _.orderBy(filteredMovie, [sortColunm.path], [sortColunm.order]);
+
+        const allMovies = paginate(sortedMovies, currentPage, pageSize);
+
+        return (
+            <>
+                <div className="row">
+                    <div className="col-md-3 my-5">
+                        <SideBar
+                            items={genres}
+                            seletedItems={selectedGenre}
+                            onChangeItem={this.handleSelectedGenre}
+                        />
+                    </div>
+                    <div className="col-md-9">
+                        <div className="my-3">there are <strong> {filteredMovie.length}</strong> in the database</div>
+                        {movies.length !== 0 ?
+                            <MoviesList
+                                movies={allMovies}
+                                onRemoveMovie={this.handleMovieRemove}
+                                isLiked={this.handleLiked}
+                                onSort={this.handleSort}
+                                sortColunm={sortColunm}
+                            /> :
+                            <h1>No more movie ......</h1>
+                        }
+                        <Pagination
+                            itemsCount={filteredMovie.length}
+                            pageSize={pageSize}
+                            onPageChange={this.handlePageChange}
+                            currentPage={currentPage}
+                        />
+                    </div>
+                </div>
+            </>
+        );
+    }
 }
 
 export default Movies;
