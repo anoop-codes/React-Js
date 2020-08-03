@@ -1,14 +1,15 @@
 import React from 'react';
 import './App.css';
+import HomeRouterCompo from './app-routing/HomeRouting';
 
-import HomeVidlyApp from './app-vidly/HomeVidlyApp';
+// import HomeVidlyApp from './app-vidly/HomeVidlyApp';
 
 
 function App() {
   return (
     <div className="container">
-
-      <HomeVidlyApp />
+      <HomeRouterCompo />
+      {/* <HomeVidlyApp /> */}
     </div>
   );
 }
