@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-import HomeVidlyApp from './app-vidly/HomeVidlyApp';
+// import HomeVidlyApp from './app-vidly/HomeVidlyApp';
+import HomeHooksCompo from './aap-hooks/HomeHooks';
 
 
 function App() {
   return (
     <div className="container">
-      <HomeVidlyApp />
+      <HomeHooksCompo />
     </div>
   );
 }
