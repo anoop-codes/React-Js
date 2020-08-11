@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import HomeUseState from './useState/HomeUseState';
+import HomeFormCompo from './forms/HomeFormCompo';
 
 function App() {
   return (
     <div className="container">
-      <HomeUseState />
+      <HomeFormCompo />
     </div>
   );
 }
