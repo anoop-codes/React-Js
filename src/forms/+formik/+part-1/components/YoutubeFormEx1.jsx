@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import CustomErrorMsg from '../common/CustomErrorMsg';
+import * as Yup from 'yup';
 
 
 const initialValues = {
@@ -24,12 +25,20 @@ const validate = (value) => {
     return errors;
 }
 
+
+const validationSchema = Yup.object({
+    name: Yup.string().required(),
+    email: Yup.string().email().required(),
+    channel: Yup.string().min(3).required()
+})
+
 const YoutubeFormEx1 = () => {
 
     const formik = useFormik({
         initialValues,
         onSubmit,
-        validate
+        // validate
+        validationSchema
     })
 
     console.log(formik)
@@ -44,9 +53,10 @@ const YoutubeFormEx1 = () => {
                         type="text"
                         className="form-control"
                         id="name"
-                        value={formik.name}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
+                        // value={formik.name}
+                        // onChange={formik.handleChange}
+                        // onBlur={formik.handleBlur}
+                        {...formik.getFieldProps('name')}
                     />
 
                     <CustomErrorMsg

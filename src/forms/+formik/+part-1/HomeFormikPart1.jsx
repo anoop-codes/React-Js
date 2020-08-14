@@ -1,10 +1,10 @@
 import React from 'react';
-import YoutubeFormEx1 from './components/YoutubeFormEx1';
+import YoutubeFormEx2 from './components/YoutubeFormEx2';
 
 const HomeFormikPart1 = () => {
     return (
         <>
-            <YoutubeFormEx1 />
+            <YoutubeFormEx2 />
         </>
     );
 }
