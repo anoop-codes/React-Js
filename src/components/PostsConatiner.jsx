@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchPost } from '../store/posts/post-actions';
 
-const PostContainer = () => {
+const PostContainer = ({ sortBy }) => {
+
     const { postData } = useSelector(state => state);
     const dispatch = useDispatch();
 
@@ -13,6 +14,7 @@ const PostContainer = () => {
 
     return (
         <>
+            <p>Data should be sorted by : <strong>{sortBy}</strong></p>
             {JSON.stringify(postData['data'][0])}
         </>
     );

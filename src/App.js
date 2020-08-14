@@ -14,7 +14,7 @@ function App() {
         <CakeConatiner sortBy="name" />
         <HooksCakesContainer />
         <HooksIceCreamContainer />
-        <PostContainer />
+        <PostContainer sortBy="name" />
       </div>
     </Provider>
   );
