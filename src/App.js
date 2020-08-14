@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import HomeRoutingCompo from './components/routers/HomeRouteringCompo';
+import HomeHttpCompo from './components/https/HomeHttpCompo';
 
 
 
 function App() {
   return (
     <div className="App">
-      <HomeRoutingCompo />
+      <HomeHttpCompo />
     </div>
   );
 }
