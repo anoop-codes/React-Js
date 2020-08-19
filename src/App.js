@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
-import HomeFormCompo from './forms/HomeFormCompo';
+import HomeCurrency from './concurrency/HomeCurrency';
+
 
 function App() {
   return (
     <div className="container">
-      <HomeFormCompo />
+      <HomeCurrency />
     </div>
   );
 }
